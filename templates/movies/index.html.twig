@@ -39,7 +39,7 @@
                       {{category.name}}
                   {% endfor %}
                   <br>
-                  De <a href="#">{{movie.author.name}}</a>
+                  De <a href="{{path('authors', {id: movie.author.id})}}">{{movie.author.name}}</a>
                 </small>
               </p>
               <p class="card-text description">{{movie.description}}</p>

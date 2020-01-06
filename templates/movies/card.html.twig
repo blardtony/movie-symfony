@@ -21,7 +21,7 @@
       </div>
       <div class="col-lg-8">
         <p>Date de sortie : {{ movie.date.format('d/m/Y') }}</p>
-        <p>De <a href="#">{{movie.author.name}}</a></p>
+        <p>De <a href="{{path('authors', {id: movie.author.id})}}">{{movie.author.name}}</a></p>
         <p>
           Genres :
           {% for category in movie.category %}
