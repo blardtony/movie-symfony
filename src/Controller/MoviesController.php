@@ -26,9 +26,9 @@ class MoviesController extends AbstractController
    */
   public function show($id)
   {
-    $movies = $this->getDoctrine()->getRepository(Movies::class)->find($id);
+    $movie = $this->getDoctrine()->getRepository(Movies::class)->find($id);
     return $this->render('movies/card.html.twig', [
-      'movie' => $movies,
+      'movie' => $movie,
     ]);
   }
 }
