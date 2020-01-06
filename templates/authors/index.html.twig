@@ -36,7 +36,7 @@
         <div class="col-lg-6">
           <div class="card mt-2" style="width:400px">
             <div class="card-body">
-              <h4 class="card-title text-center">{{movie.name}}</h4>
+              <a href="{{path('movies_card', {id: movie.id})}}"><h4 class="card-title text-center">{{movie.name}}</h4></a>
             </div>
             <img class="card-img-top" src="{{movie.cover}}" alt="" width="100%" height="50%">
           </div>
