@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des films{% endblock %}
+
+{% block stylesheets %}
+  <style>
+
+  </style>
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-lg-4">
+        <img src="{{movie.cover}}" alt="">
+      </div>
+      <div class="col-lg-8">
+        <p>Date de sortie : {{ movie.date.format('d/m/Y') }}</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
