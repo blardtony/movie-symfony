@@ -34,7 +34,7 @@
     <div class="row mt-5">
       {% for movie in author.movies %}
         <div class="col-lg-6">
-          <div class="card mt-2" style="width:400px">
+          <div class="card mt-2" style="width:250px">
             <div class="card-body">
               <a href="{{path('movies_card', {id: movie.id})}}"><h4 class="card-title text-center">{{movie.name}}</h4></a>
             </div>
