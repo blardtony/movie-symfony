@@ -11,7 +11,7 @@ use App\Entity\Movies;
 class MoviesController extends AbstractController
 {
   /**
-   * @Route("/list", name="list")
+   * @Route("/", name="list")
    */
   public function index()
   {
@@ -20,6 +20,7 @@ class MoviesController extends AbstractController
       'movies' => $movies,
     ]);
   }
+
 
   /**
    * @Route("/card/{{id}}", name="card")
