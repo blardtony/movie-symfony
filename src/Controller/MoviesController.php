@@ -15,22 +15,12 @@ class MoviesController extends AbstractController
    */
   public function index()
   {
-    //$movies = $this->getDoctrine()->getRepository(Movies::class)->findBy([], ['name' => 'ASC'], 20);
-    $movie = $this->getDoctrine()
-    ->getRepository(Movies::class)
-    ->createQueryBuilder('m')
-    ->where('m.name LIKE :name')
-    ->setParameter('name', '%'.$findBy['name'].'%')
-    ->orderBy('m.'.$orderBy, $asc ? 'ASC' : 'DESC')
-    ->setMaxResults(20)
-    ->setFirstResult(0)
-    ->getQuery()
-    ->execute();
-
+    $movies = $this->getDoctrine()->getRepository(Movies::class)->findBy([], ['name' => 'ASC'], 20);
     return $this->render('movies/index.html.twig', [
-      'movies' => $movie,
+      'movies' => $movies,
     ]);
   }
+
 
   /**
    * @Route("/card/{{id}}", name="card")
