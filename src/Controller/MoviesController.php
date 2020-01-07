@@ -5,9 +5,6 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Movies;
-use Symfony\Component\HttpFoundation\Request;
-use Knp\Component\Pager\PaginatorInterface;
-
 /**
  * @Route("/movies", name="movies_")
  */
@@ -16,16 +13,22 @@ class MoviesController extends AbstractController
   /**
    * @Route("/", name="list")
    */
-  public function index(Request $request, PaginatorInterface $paginator)
+  public function index()
   {
-    $movie = $this->getDoctrine()->getRepository(Movies::class)->findBy([], ['name' => 'ASC']);
-    $movies = $paginator->paginate(
-      $movie,
-      $request->query->getInt('page',1),
-      20
-    );
+    //$movies = $this->getDoctrine()->getRepository(Movies::class)->findBy([], ['name' => 'ASC'], 20);
+    $movie = $this->getDoctrine()
+    ->getRepository(Movies::class)
+    ->createQueryBuilder('m')
+    ->where('m.name LIKE :name')
+    ->setParameter('name', '%'.$findBy['name'].'%')
+    ->orderBy('m.'.$orderBy, $asc ? 'ASC' : 'DESC')
+    ->setMaxResults(20)
+    ->setFirstResult(0)
+    ->getQuery()
+    ->execute();
+
     return $this->render('movies/index.html.twig', [
-      'movies' => $movies,
+      'movies' => $movie,
     ]);
   }
 
