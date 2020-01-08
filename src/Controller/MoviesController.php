@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Movies;
 /**
  * @Route("/movies", name="movies_")
@@ -11,7 +12,7 @@ use App\Entity\Movies;
 class MoviesController extends AbstractController
 {
   /**
-   * @Route("/", name="list")
+   * @Route("", name="list")
    */
   public function index()
   {
@@ -20,7 +21,25 @@ class MoviesController extends AbstractController
       'movies' => $movies,
     ]);
   }
+  /**
+   * @Route("/search", name="search")
+   */
+  public function search(Request $request)
+  {
+    $search = (string) $request->query->get('search', null);
 
+    $movies = $this->getDoctrine()
+    ->getRepository(Movies::class)
+    ->createQueryBuilder('m')
+    ->where('m.name LIKE :name')
+    ->setParameter('name', '%' . $search .'%')
+    ->orderBy('m.name')
+    ->getQuery()
+    ->execute();
+    return $this->render('movies/index.html.twig', [
+      'movies' => $movies,
+    ]);
+  }
 
   /**
    * @Route("/card/{{id}}", name="card")
