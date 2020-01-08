@@ -10,12 +10,12 @@
           <p class="card-text">
             <small>
               {% for category in movie.category %}
-                  <a href="{{path('categories', {id: category.id})}}">{{category.name}}</a>
+                  <a href="{{ path('categories', {id: category.id}) }}">{{category.name}}</a>
                 {% else %}
                   Genre non défini
               {% endfor %}
               <br>
-              De <a href="{{path('authors', {id: movie.author.id})}}">{{movie.author.name}}</a>
+              De <a href="{{ path('authors', {id: movie.author.id}) }}">{{movie.author.name}}</a>
             </small>
           </p>
           <p class="card-text description">{{movie.description}}</p>
