@@ -4,8 +4,9 @@ namespace App\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Movies;
+use App\Form\MovieType;
+
 
 class MovieController extends AbstractController
 {
@@ -14,8 +15,12 @@ class MovieController extends AbstractController
    */
   public function add()
   {
-    return $this->render('admin/movies/add.html.twig', [
+    $movie = new Movies;
 
+    $form = $this->createForm(MovieType::class, $movie);
+
+    return $this->render('admin/movies/add.html.twig', [
+      'form' => $form->createView(),
     ]);
   }
 
