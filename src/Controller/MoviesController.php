@@ -21,6 +21,7 @@ class MoviesController extends AbstractController
       'movies' => $movies,
     ]);
   }
+
   /**
    * @Route("/search", name="search")
    */
