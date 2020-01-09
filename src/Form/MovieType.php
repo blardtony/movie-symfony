@@ -19,16 +19,36 @@ class MovieType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder
-        ->add('name', TextType::class, ['label' => "Nom"])
-        ->add('description', TextareaType::class, ['label' => "Description"])
-        ->add('date', DateType::class, ['label' => "Date de sortie"])
-        ->add('country', TextType::class, ['label' => "Pays"])
-        ->add('cover', TextType::class, ['label' => "Affiche du film"])
-        ->add('link', TextType::class, ['label' => "Lien vers allociné"])
+        ->add('name', TextType::class, [
+          'label' => "Nom du film"
+        ])
+        ->add('description', TextareaType::class, [
+          'label' => "Description",
+          'required' => false
+        ])
+        ->add('date', DateType::class, [
+          'format' => 'ddMMMMyyy',
+          'years' => range(1900, date('Y')),
+          'label' => "Date de sortie",
+          'required' => false
+        ])
+        ->add('country', TextType::class, [
+          'label' => "Pays d'origine",
+          'required' => false
+        ])
+        ->add('cover', TextType::class, [
+          'label' => "Affiche du film",
+          'required' => false
+        ])
+        ->add('link', TextType::class, [
+          'label' => "Lien vers allociné",
+          'required' => false
+        ])
         ->add('author', EntityType::class, [
           'class' => Authors::class,
           'choice_label' => 'name',
           'label' => "Réalisateur",
+          'required' => false
         ])
         ->add('Enregistrer', SubmitType::class);
   }
