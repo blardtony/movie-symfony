@@ -27,11 +27,14 @@ class AuthorController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-     $movie = $form->getData();
+     $author = $form->getData();
 
      $entityManager = $this->getDoctrine()->getManager();
      $entityManager->persist($author);
      $entityManager->flush();
+     return $this->redirectToRoute('admin_authors_edit', [
+       'id' => $author->getId(),
+     ]);
    }
 
 
@@ -59,6 +62,7 @@ class AuthorController extends AbstractController
      $entityManager = $this->getDoctrine()->getManager();
      $entityManager->persist($author);
      $entityManager->flush();
+     return $this->redirectToRoute('movies_list');
    }
 
 
