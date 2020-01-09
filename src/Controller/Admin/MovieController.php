@@ -32,6 +32,9 @@ class MovieController extends AbstractController
      $entityManager = $this->getDoctrine()->getManager();
      $entityManager->persist($movie);
      $entityManager->flush();
+     return $this->redirectToRoute('admin_movies_edit', [
+       'id' => $movie->getId(),
+     ]);
    }
 
 
@@ -59,6 +62,7 @@ class MovieController extends AbstractController
      $entityManager = $this->getDoctrine()->getManager();
      $entityManager->persist($movie);
      $entityManager->flush();
+     return $this->redirectToRoute('movies_list');
    }
 
 
