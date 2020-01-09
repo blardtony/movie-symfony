@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use App\Entity\Movies;
 use App\Form\MovieType;
@@ -19,7 +20,10 @@ class MovieController extends AbstractController
   {
     $movie = new Movies;
 
-    $form = $this->createForm(MovieType::class, $movie);
+    $form = $this->createForm(MovieType::class, $movie)
+    ->add('Save', SubmitType::class, [
+      'label' => 'Ajouter un film',
+    ]);
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
@@ -43,7 +47,10 @@ class MovieController extends AbstractController
   {
     $movie = $this->getDoctrine()->getRepository(Movies::class)->find($id);
 
-    $form = $this->createForm(MovieType::class, $movie);
+    $form = $this->createForm(MovieType::class, $movie)
+    ->add('Save', SubmitType::class, [
+      'label' => 'Editer un film',
+    ]);
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {

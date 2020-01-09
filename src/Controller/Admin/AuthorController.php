@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use App\Entity\Authors;
 use App\Form\AuthorType;
@@ -19,7 +20,10 @@ class AuthorController extends AbstractController
   {
     $author = new Authors;
 
-    $form = $this->createForm(AuthorType::class, $author);
+    $form = $this->createForm(AuthorType::class, $author)
+    ->add('Save', SubmitType::class, [
+      'label' => 'Ajouter un réalisateur',
+    ]);
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
@@ -43,7 +47,10 @@ class AuthorController extends AbstractController
   {
     $author = $this->getDoctrine()->getRepository(Authors::class)->find($id);
 
-    $form = $this->createForm(AuthorType::class, $author);
+    $form = $this->createForm(AuthorType::class, $author)
+    ->add('Save', SubmitType::class, [
+      'label' => 'Editer un réalisateur',
+    ]);
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {

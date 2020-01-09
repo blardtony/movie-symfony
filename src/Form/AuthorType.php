@@ -43,7 +43,6 @@ class AuthorType extends AbstractType
         ->add('link', TextType::class, [
           'label' => "Lien vers allociné",
           'required' => false
-        ])
-        ->add('Enregistrer', SubmitType::class);
+        ]);
   }
 }
