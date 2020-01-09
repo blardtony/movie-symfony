@@ -2,7 +2,6 @@
 namespace App\Tests;
 
 use App\Entity\Movies;
-use App\Repisotory\MoviesRepository;
 
 class MoviesTest extends \Codeception\Test\Unit
 {
@@ -20,13 +19,26 @@ class MoviesTest extends \Codeception\Test\Unit
     }
 
     // tests
-    public function testSomeFeature()
+    public function testGetMovieFeature()
     {
-      $userRepository = $this->make(Movies::class, ['find' => new User]);
-      $userRepository->find(1); // => User
-      $user = new User();
+      $this->tester->seeInRepository(Movies::class, [
+        'name' => 'Avatar'
+      ]);
+    }
 
-      $user->setName(null);
-      $this->assertFalse($user->validate(['username']));
+    public function testAddMovieFeature()
+    {
+
+      $movie= new Movies;
+      $movie->setName('Deux jours, une nuit');
+      $movie->setDate(new \DateTime('2014-01-01'));
+      $movie->setDate(new \DateTime('2014-01-01'));
+
+      $em = $this->getModule('Doctrine2')->em;
+      $em->persist($movie);
+      $em->flush();
+
+      $this->assertEquals('Deux jours, une nuit', $movie->getName());
+      $this->tester->seeInRepository(Movies::class, ['name' => 'Deux jours, une nuit']);
     }
 }
