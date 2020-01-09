@@ -32,6 +32,12 @@
     "codeception/lib-asserts": {
         "version": "1.10.1"
     },
+    "codeception/lib-innerbrowser": {
+        "version": "1.2.3"
+    },
+    "codeception/module-phpbrowser": {
+        "version": "1.0.0"
+    },
     "codeception/phpunit-wrapper": {
         "version": "8.1.1"
     },
@@ -143,6 +149,12 @@
     },
     "egulias/email-validator": {
         "version": "2.1.13"
+    },
+    "guzzlehttp/guzzle": {
+        "version": "6.5.2"
+    },
+    "guzzlehttp/promises": {
+        "version": "v1.3.1"
     },
     "guzzlehttp/psr7": {
         "version": "1.6.1"
