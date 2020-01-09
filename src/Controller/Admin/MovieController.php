@@ -37,12 +37,26 @@ class MovieController extends AbstractController
   }
 
   /**
-   * @Route("/movies/delete", name="admin_movies_delete")
+   * @Route("/movies/edit/{{id}}", name="admin_movies_edit")
    */
-  public function edit()
+  public function edit(Request $request, $id)
   {
-    return $this->render('admin/movies/delete.html.twig', [
+    $movie = $this->getDoctrine()->getRepository(Movies::class)->find($id);
 
+    $form = $this->createForm(MovieType::class, $movie);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+     $movie = $form->getData();
+
+     $entityManager = $this->getDoctrine()->getManager();
+     $entityManager->persist($movie);
+     $entityManager->flush();
+   }
+
+
+    return $this->render('admin/movies/edit.html.twig', [
+      'form' => $form->createView(),
     ]);
   }
 }

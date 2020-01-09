@@ -21,6 +21,7 @@ class UserCest
   public function tryToFailLogin(AcceptanceTester $I)
   {
     $I->amOnPage('/login');
+    
     $I->fillField('email', 'cool@gmail.com');
     $I->fillField('password', 'alaji');
     $I->click('Se connecter');

@@ -12,7 +12,7 @@ class AuthorsCest
     public function tryToAddAuthors(AcceptanceTester $I)
     {
       $I->amOnPage('/admin/authors/add');
-      $I->fillField('author[name]','Tony');
+      $I->fillField('author[name]', 'Tony Blard');
       $I->fillField('author[nationality]','Français');
       $I->fillField('author[biography]','En formation pour devenir développeur');
       $I->fillField('author[photo]','cool');
