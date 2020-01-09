@@ -32,7 +32,10 @@ class MoviesTest extends \Codeception\Test\Unit
       $movie= new Movies;
       $movie->setName('Deux jours, une nuit');
       $movie->setDate(new \DateTime('2014-01-01'));
-      $movie->setDate(new \DateTime('2014-01-01'));
+      $movie->setDescription('Cool');
+      $movie->setCountry('Cool');
+      $movie->setCover('Cool');
+      $movie->setLink('Cool');
 
       $em = $this->getModule('Doctrine2')->em;
       $em->persist($movie);
