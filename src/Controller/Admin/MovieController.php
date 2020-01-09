@@ -24,7 +24,7 @@ class MovieController extends AbstractController
 
     if ($form->isSubmitted() && $form->isValid()) {
      $movie = $form->getData();
-     
+
      $entityManager = $this->getDoctrine()->getManager();
      $entityManager->persist($movie);
      $entityManager->flush();
@@ -39,7 +39,7 @@ class MovieController extends AbstractController
   /**
    * @Route("/movies/delete", name="admin_movies_delete")
    */
-  public function delete()
+  public function edit()
   {
     return $this->render('admin/movies/delete.html.twig', [
 
