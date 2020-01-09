@@ -37,12 +37,26 @@ class AuthorController extends AbstractController
   }
 
   /**
-   * @Route("/movies/edit", name="admin_movies_edit")
+   * @Route("/authors/edit/{{id}}", name="admin_authors_edit")
    */
-  public function edit()
+  public function edit(Request $request, $id)
   {
-    return $this->render('admin/movies/delete.html.twig', [
+    $author = $this->getDoctrine()->getRepository(Authors::class)->find($id);
 
+    $form = $this->createForm(AuthorType::class, $author);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+     $author = $form->getData();
+
+     $entityManager = $this->getDoctrine()->getManager();
+     $entityManager->persist($author);
+     $entityManager->flush();
+   }
+
+
+    return $this->render('admin/authors/edit.html.twig', [
+      'form' => $form->createView(),
     ]);
   }
 }
