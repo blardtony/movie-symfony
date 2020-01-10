@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+      <h1>Page non trouvée</h1>
+
+      <p>
+        La page demandée n'a pas été trouvée. Vérifier l'URL ou  <a href="{{ path('movies_list') }}">retourner sur la page d'accueil</a>.
+      </p>
+    </div>
+{% endblock %}
