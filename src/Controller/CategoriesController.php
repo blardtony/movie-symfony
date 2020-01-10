@@ -22,14 +22,16 @@ class CategoriesController extends AbstractController
       if (!$category) {
         return $this->redirectToRoute('movies_list');
       }
-      $categories = $paginator->paginate(
-        $category, // Requête contenant les données à paginer (ici nos articles)
+      $pagination = $paginator->paginate(
+        $category->getMovies(), // Requête contenant les données à paginer (ici nos articles)
         $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-        10 // Nombre de résultats par page
+        18 // Nombre de résultats par page
       );
 
       return $this->render('categories/index.html.twig', [
-        'category' => $categories,
+        'categories' => $pagination,
+        'category' => $category,
       ]);
-  }
+
+    }
 }

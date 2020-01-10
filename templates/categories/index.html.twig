@@ -29,7 +29,7 @@
         <h2>{{category.name}}</h2>
       </div>
     </div>
-      {% for movie in category.movies %}
+      {% for movie in categories %}
         <div class="card mt-3" style="max-width: 540px;">
           <div class="row no-gutters">
             <div class="col-md-4">
@@ -55,6 +55,8 @@
           </div>
         </div>
       {% endfor %}
-      {{ knp_pagination_render(category) }}
+    <div class="row mt-5">
+        {{ knp_pagination_render(categories) }}
+    </div>
   </div>
 {% endblock %}
