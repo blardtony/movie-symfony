@@ -14,11 +14,9 @@ class CategoriesController extends AbstractController
     public function show($id)
     {
       $category = $this->getDoctrine()->getRepository(Categories::class)->find($id);
-
       if (!$category) {
         return $this->redirectToRoute('movies_list');
       }
-
       return $this->render('categories/index.html.twig', [
         'category' => $category,
       ]);
