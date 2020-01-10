@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -13,9 +15,11 @@ use App\Form\MovieType;
 
 class MovieController extends AbstractController
 {
-  /**
-   * @Route("/movies/add", name="admin_movies_add")
-   */
+    /**
+     * @Route("/movies/add", name="admin_movies_add")
+     * @param Request $request
+     * @return RedirectResponse|Response
+     */
   public function add(Request $request)
   {
     $movie = new Movies;

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Movies;
@@ -22,9 +23,11 @@ class MoviesController extends AbstractController
     ]);
   }
 
-  /**
-   * @Route("/search", name="search")
-   */
+    /**
+     * @param Request $request
+     * @Route("/search", name="search")
+     * @return Response
+     */
   public function search(Request $request)
   {
     $search = (string) $request->query->get('search', null);
@@ -42,9 +45,11 @@ class MoviesController extends AbstractController
     ]);
   }
 
-  /**
-   * @Route("/card/{{id}}", name="card")
-   */
+    /**
+     * @Route("/card/{{id}}", name="card")
+     * @param $id
+     * @return Response
+     */
   public function show($id)
   {
     $movie = $this->getDoctrine()->getRepository(Movies::class)->find($id);
