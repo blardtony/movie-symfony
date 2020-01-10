@@ -24,6 +24,7 @@
 
 {% block body %}
   <div class="container">
+    {% if movies|length %}
     {% for movie in movies %}
       <div class="card mt-3" style="max-width: 540px;">
         <div class="row no-gutters">
@@ -50,6 +51,12 @@
         </div>
       </div>
     {% endfor %}
+    {% else %}
+      <div class="alert alert-warning mt-5">
+        Il n'y a aucun résultat.
+      </div>
+    {% endif %}
+
   </div>
 
 {% endblock %}

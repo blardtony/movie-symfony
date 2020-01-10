@@ -40,6 +40,7 @@ class MoviesController extends AbstractController
     ->orderBy('m.name')
     ->getQuery()
     ->execute();
+
     return $this->render('movies/index.html.twig', [
       'movies' => $movies,
     ]);
@@ -53,6 +54,7 @@ class MoviesController extends AbstractController
   public function show($id)
   {
     $movie = $this->getDoctrine()->getRepository(Movies::class)->find($id);
+
     return $this->render('movies/card.html.twig', [
       'movie' => $movie,
     ]);
