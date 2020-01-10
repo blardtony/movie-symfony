@@ -48,7 +48,7 @@ class MovieController extends AbstractController
   }
 
   /**
-   * @Route("/movies/edit/{{id}}", name="admin_movies_edit")
+   * @Route("/movies/edit/{id}", name="admin_movies_edit")
    */
   public function edit(Request $request, $id)
   {

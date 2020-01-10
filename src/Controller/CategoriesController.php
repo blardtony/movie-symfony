@@ -9,7 +9,7 @@ use App\Entity\Categories;
 class CategoriesController extends AbstractController
 {
     /**
-     * @Route("/categories/{{id}}", name="categories")
+     * @Route("/categories/{id}", name="categories")
      */
     public function show($id)
     {

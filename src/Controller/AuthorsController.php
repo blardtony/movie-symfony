@@ -9,7 +9,7 @@ use App\Entity\Authors;
 class AuthorsController extends AbstractController
 {
     /**
-     * @Route("/authors/{{id}}", name="authors")
+     * @Route("/authors/{id}", name="authors")
      */
     public function show($id)
     {

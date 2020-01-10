@@ -47,7 +47,7 @@ class MoviesController extends AbstractController
   }
 
     /**
-     * @Route("/card/{{id}}", name="card")
+     * @Route("/card/{id}", name="card")
      * @param $id
      * @return Response
      */
@@ -55,6 +55,9 @@ class MoviesController extends AbstractController
   {
     $movie = $this->getDoctrine()->getRepository(Movies::class)->find($id);
 
+    if (!$movie) {
+      return $this->redirectToRoute('movies_list');
+    }
     return $this->render('movies/card.html.twig', [
       'movie' => $movie,
     ]);

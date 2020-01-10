@@ -44,7 +44,7 @@ class AuthorController extends AbstractController
   }
 
   /**
-   * @Route("/authors/edit/{{id}}", name="admin_authors_edit")
+   * @Route("/authors/edit/{id}", name="admin_authors_edit")
    */
   public function edit(Request $request, $id)
   {
