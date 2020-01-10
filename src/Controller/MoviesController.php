@@ -12,37 +12,42 @@ use App\Entity\Movies;
  */
 class MoviesController extends AbstractController
 {
+  const LIMIT = 20;
   /**
    * @Route("", name="list")
    */
   public function index()
   {
-    $movies = $this->getDoctrine()->getRepository(Movies::class)->findBy([], ['name' => 'ASC'], 20);
     return $this->render('movies/index.html.twig', [
-      'movies' => $movies,
+      'limit' => self::LIMIT,
     ]);
   }
 
     /**
      * @param Request $request
-     * @Route("/search", name="search")
+     * @Route("/ajax", name="ajax")
      * @return Response
      */
-  public function search(Request $request)
+  public function ajax(Request $request)
   {
     $search = (string) $request->query->get('search', null);
+
+    $offset = (int) $request->query->get('offset', 0);
 
     $movies = $this->getDoctrine()
     ->getRepository(Movies::class)
     ->createQueryBuilder('m')
     ->where('m.name LIKE :name')
     ->setParameter('name', '%' . $search .'%')
+    ->setMaxResults(self::LIMIT)
+    ->setFirstResult($offset)
     ->orderBy('m.name')
     ->getQuery()
     ->execute();
 
-    return $this->render('movies/index.html.twig', [
+    return $this->render('movies/movie.html.twig', [
       'movies' => $movies,
+      'offset' => $offset,
     ]);
   }
 
