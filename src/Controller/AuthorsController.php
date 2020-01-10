@@ -14,6 +14,9 @@ class AuthorsController extends AbstractController
     public function show($id)
     {
       $author = $this->getDoctrine()->getRepository(Authors::class)->find($id);
+      if (!$author) {
+        return $this->redirectToRoute('movies_list');
+      }
       return $this->render('authors/index.html.twig', [
           'author' => $author,
       ]);
